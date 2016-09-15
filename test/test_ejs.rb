@@ -174,25 +174,25 @@ class EJSEvaluationTest < Test::Unit::TestCase
     params = { :foobar => "<b>Foo Bar</b>" }
     safe_string = "&lt;b&gt;Foo Bar&lt;&#x2F;b&gt;"
 
-    template = "<%- true || foobar %>"
+    template = "<%= true || foobar %>"
     assert_equal "true", EJS.evaluate(template, params)
 
-    template = "<%- null || foobar %>"
+    template = "<%= null || foobar %>"
     assert_equal safe_string, EJS.evaluate(template, params)
 
-    template = "<%- false || foobar %>"
+    template = "<%= false || foobar %>"
     assert_equal safe_string, EJS.evaluate(template, params)
 
-    template = "<%- foobar || 'Foo & Bar' %>"
+    template = "<%= foobar || 'Foo & Bar' %>"
     assert_equal safe_string, EJS.evaluate(template, params)
 
-    template = "<%- true ? foobar : 'foobar' %>"
+    template = "<%= true ? foobar : 'foobar' %>"
     assert_equal safe_string, EJS.evaluate(template, params)
 
-    template = "<%- false ? foobar : 'Foo & Bar' %>"
+    template = "<%= false ? foobar : 'Foo & Bar' %>"
     assert_equal "Foo &amp; Bar", EJS.evaluate(template, params)
 
-    template = "<%- true ? (false || 'Foo & Bar') : 'Foo' %>"
+    template = "<%= true ? (false || 'Foo & Bar') : 'Foo' %>"
     assert_equal "Foo &amp; Bar", EJS.evaluate(template, params)
   end
 
