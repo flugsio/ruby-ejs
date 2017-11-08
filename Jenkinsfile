@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('error') {
       steps {
         sh 'echo yelo'
+      }
+    }
+    stage(' ') {
+      steps {
+        echo 'asdf'
       }
     }
   }
